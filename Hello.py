@@ -6,6 +6,7 @@ from fuzzywuzzy import process
 file_path = "/workspaces/rsm-chatbot/output_df_final.csv"
 data = pd.read_csv(file_path)
 
+
 # Function to extract sections based on the concept
 def get_section(user_input):
     # Use fuzzy matching to find similar concepts
