@@ -79,7 +79,7 @@ def main():
             bot_response = bot_response.replace('Keywords:', '\nKeywords:')
             
             st.write("🤖 **Chatbot:**")
-            st.write(bot_response)
+            st.write("🤖 :",bot_response)
 
 if __name__ == "__main__":
     main()
