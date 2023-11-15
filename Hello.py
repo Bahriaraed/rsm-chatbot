@@ -60,7 +60,7 @@ def get_section(user_input):
 # Define a form to capture user input
 def main():
     st.title('Project Risk Management Chatbot')
-    st.write('This Chatbot will help you get an idea about your Project Risk management,you can also check form the pmbok directly using the Chapters you got as a result. PMBOK:https://drive.google.com/file/d/14p95P9Kw6hYfizZn-1QH3Plq5vx_NZfM/view?usp=sharing')
+    st.write('This Chatbot will help you get an idea about your Project Risk management, you can also check from the PMBOK directly using the Chapters you got as a result. [PMBOK Link](https://drive.google.com/file/d/14p95P9Kw6hYfizZn-1QH3Plq5vx_NZfM/view?usp=sharing)')
 
     form = st.form(key='my_form')
     user_input = form.text_input('Enter your message here:')
@@ -69,7 +69,10 @@ def main():
     if submit_button:
         user_message = user_input.strip().lower()
         if user_message:
-            st.text("You: " + user_input)
+            st.markdown(
+                "<i class='fas fa-user'></i> You: " + user_input,
+                unsafe_allow_html=True
+            )
             bot_response = get_section(user_message)
             
             # Formatting the bot response for better readability
@@ -77,8 +80,16 @@ def main():
             bot_response = bot_response.replace('Concept:', '\nConcept:').replace('Definition:', '\nDefinition:')
             bot_response = bot_response.replace('Type:', '\nType:').replace('Synonyms:', '\nSynonyms:')
             bot_response = bot_response.replace('Keywords:', '\nKeywords:')
-            st.text("Chatbot: ")
-            st.write(bot_response)
+            
+            st.markdown(
+                "<i class='fas fa-robot'></i> Bot: " + bot_response,
+                unsafe_allow_html=True
+            )
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
