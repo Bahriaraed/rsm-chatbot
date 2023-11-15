@@ -58,43 +58,28 @@ def get_section(user_input):
     return response
 
 # Define a form to capture user input
-
 def main():
     st.title('Project Risk Management Chatbot')
-    st.write('This Chatbot will help you get an idea about your Project Risk management.')
+    st.write('This Chatbot will help you get an idea about your Project Risk management, you can also check from the PMBOK directly using the Chapters you got as a result. [PMBOK Link](https://drive.google.com/file/d/14p95P9Kw6hYfizZn-1QH3Plq5vx_NZfM/view?usp=sharing)')
 
-    user_input = st.text_input('Enter your message here:')
-    submit_button = st.button('Send')
+    form = st.form(key='my_form')
+    user_input = form.text_input('Enter your message here:')
+    submit_button = form.form_submit_button('Send')
 
     if submit_button:
-        st.markdown(
-            """<div style="display: flex; align-items: center; justify-content: flex-end;">
-                   <span style="margin-right: 5px;font-size:larger;">👤</span>
-                   <span style="font-weight: bold;font-size:larger;">You:</span>
-                   <span style="margin-left: 5px;">{}</span>
-               </div>
-            """.format(user_input),
-            unsafe_allow_html=True
-        )
-        
-        # Here, you'll have your bot response from your existing code.
-        # For demonstration, I'll show a simple bot response.
-        bot_response = "This is a sample bot response."
-
-        st.markdown(
-            """<div style="display: flex; align-items: center;">
-                   <span style="margin-right: 5px;font-size:larger;">🤖</span>
-                   <span style="font-weight: bold;font-size:larger;">Bot:</span>
-                   <span style="margin-left: 5px;">{}</span>
-               </div>
-            """.format(bot_response),
-            unsafe_allow_html=True
-        )
+        user_message = user_input.strip().lower()
+        if user_message:
+            st.write("👤 **You:** " + user_input)
+            bot_response = get_section(user_message)
+            
+            # Formatting the bot response for better readability
+            bot_response = bot_response.replace('[', '').replace(']', '').replace("'", "").replace(",", ", ")
+            bot_response = bot_response.replace('Concept:', '\nConcept:').replace('Definition:', '\nDefinition:')
+            bot_response = bot_response.replace('Type:', '\nType:').replace('Synonyms:', '\nSynonyms:')
+            bot_response = bot_response.replace('Keywords:', '\nKeywords:')
+            
+            st.write("🤖 **Chatbot:**")
+            st.write(bot_response)
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
