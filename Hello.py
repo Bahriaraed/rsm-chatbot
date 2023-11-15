@@ -70,7 +70,15 @@ def main():
     if submit_button:
         user_message = user_input.strip().lower()
         if user_message:
-            st.chat_message(name="user" )
+            st.markdown(
+                """<div style="display: flex; align-items: center; justify-content: flex-end;">
+                       <span style="margin-right: 5px;">👤</span>
+                       <span style="font-weight: bold;">You:</span>
+                       <span style="margin-left: 5px;">""" + user_input + """</span>
+                   </div>
+                """,
+                unsafe_allow_html=True
+            )
             bot_response = get_section(user_message)
             
             # Formatting the bot response for better readability
@@ -79,11 +87,18 @@ def main():
             bot_response = bot_response.replace('Type:', '\nType:').replace('Synonyms:', '\nSynonyms:')
             bot_response = bot_response.replace('Keywords:', '\nKeywords:')
             
-            st.chat_message(name="assistant")
+            st.markdown(
+                """<div style="display: flex; align-items: center;">
+                       <span style="margin-right: 5px;">🤖</span>
+                       <span style="font-weight: bold;">Assistant:</span>
+                       <span style="margin-left: 5px;">""" + bot_response + """</span>
+                   </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 if __name__ == "__main__":
     main()
-
 
 
 
