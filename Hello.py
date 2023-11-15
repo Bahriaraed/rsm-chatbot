@@ -18,6 +18,7 @@ def get_section(user_input):
         matching_row = data[data['Content'] == most_similar_concept]
         if not matching_row.empty:
             Chapter_Name = matching_row['Chapter_Name'].iloc[0]
+            Sub_chapter_Number = matching_row['Sub_chapter_Number'].iloc[0]
             Sub_chapter_Name = matching_row['Sub_chapter_Name'].iloc[0]
             Sub_sub_chapter_Name = matching_row['Sub_sub_chapter_Name'].iloc[0]
             concept = matching_row['concepts'].iloc[0]
@@ -25,7 +26,7 @@ def get_section(user_input):
             type_val = matching_row['type'].iloc[0]
             synonyms = matching_row['synonyms'].iloc[0]
             keywords = matching_row['Keywords_Only'].iloc[0]
-            response = f"*Chapter_Name:*{Chapter_Name}\n\n*Sub_chapter_Name:*{Sub_chapter_Name}\n\n*Sub_sub_chapter_Name:*{Sub_sub_chapter_Name}\n\n*Concept:* {concept}\n\n*Definition:* {definition}\n\n*Type:* {type_val}\n\n*Synonyms:* {synonyms}\n\n*Keywords:* {keywords}"
+            response = f"*Chapter_Name:*{Chapter_Name}\n\n*Sub_chapter_Name:*{Sub_chapter_Name}\n\n*Sub_chapter_Number:*{Sub_chapter_Number}\n\n*Sub_sub_chapter_Name:*{Sub_sub_chapter_Name}\n\n*Concept:* {concept}\n\n*Definition:* {definition}\n\n*Type:* {type_val}\n\n*Synonyms:* {synonyms}\n\n*Keywords:* {keywords}"
             
             # Add a line to indicate the relation between user input and result
             response += f"\n\n**Result based on user input: '{user_input}'**"
@@ -39,7 +40,7 @@ def get_section(user_input):
 # Define a form to capture user input
 def main():
     st.title('Project Risk Management Chatbot')
-    st.write('This Chatbot will help you get an idea about your Project Risk management,you can also check form the pmbok directly using the Chapters you got as a result ')
+    st.write('This Chatbot will help you get an idea about your Project Risk management,you can also check form the pmbok directly using the Chapters you got as a result. PMBOK:https://drive.google.com/file/d/14p95P9Kw6hYfizZn-1QH3Plq5vx_NZfM/view?usp=sharing')
 
     form = st.form(key='my_form')
     user_input = form.text_input('Enter your message here:')
