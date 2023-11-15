@@ -58,6 +58,7 @@ def get_section(user_input):
     return response
 
 # Define a form to capture user input
+
 def main():
     st.title('Project Risk Management Chatbot')
     st.write('This Chatbot will help you get an idea about your Project Risk management, you can also check from the PMBOK directly using the Chapters you got as a result. [PMBOK Link](https://drive.google.com/file/d/14p95P9Kw6hYfizZn-1QH3Plq5vx_NZfM/view?usp=sharing)')
@@ -88,6 +89,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
