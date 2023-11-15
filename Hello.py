@@ -70,12 +70,7 @@ def main():
     if submit_button:
         user_message = user_input.strip().lower()
         if user_message:
-            st.chat_message(
-                user_input,
-                name="You",
-                side="right",
-                icon="👤"
-            )
+            st.chat_message(name="user" )
             bot_response = get_section(user_message)
             
             # Formatting the bot response for better readability
@@ -84,12 +79,7 @@ def main():
             bot_response = bot_response.replace('Type:', '\nType:').replace('Synonyms:', '\nSynonyms:')
             bot_response = bot_response.replace('Keywords:', '\nKeywords:')
             
-            st.chat_message(
-                bot_response,
-                name="Assistant",
-                side="left",
-                icon="🤖"
-            )
+            st.chat_message(name="assistant")
 
 if __name__ == "__main__":
     main()
