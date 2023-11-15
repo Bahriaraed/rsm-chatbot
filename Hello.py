@@ -3,7 +3,7 @@ import pandas as pd
 from fuzzywuzzy import process
 
 
-file_path = "/workspaces/rsm-chatbot/output_df_final.csv"
+file_path = "output_df_final.csv"
 data = pd.read_csv(file_path)
 
 
