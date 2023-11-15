@@ -70,9 +70,11 @@ def main():
     if submit_button:
         user_message = user_input.strip().lower()
         if user_message:
-            st.markdown(
-                "<i class='fas fa-user'></i> You: " + user_input,
-                unsafe_allow_html=True
+            st.chat_message(
+                user_input,
+                name="You",
+                side="right",
+                icon="👤"
             )
             bot_response = get_section(user_message)
             
@@ -82,9 +84,11 @@ def main():
             bot_response = bot_response.replace('Type:', '\nType:').replace('Synonyms:', '\nSynonyms:')
             bot_response = bot_response.replace('Keywords:', '\nKeywords:')
             
-            st.markdown(
-                "<i class='fas fa-robot'></i> Bot: " + bot_response,
-                unsafe_allow_html=True
+            st.chat_message(
+                bot_response,
+                name="Assistant",
+                side="left",
+                icon="🤖"
             )
 
 if __name__ == "__main__":
