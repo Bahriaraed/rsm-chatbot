@@ -8,13 +8,20 @@ data = pd.read_csv(file_path)
 
 # Function to extract sections based on the concept
 def get_section(user_input):
-    # Use fuzzy matching to find similar concepts with adjusted matching parameters
+    # Define common question phrases to ignore
+    common_question_phrases = ["what is", "what are", "can you tell me", "explain","help me understand"]
+
+    # Remove common question phrases from user input
+    for phrase in common_question_phrases:
+        if phrase in user_input.lower():
+            user_input = user_input.lower().replace(phrase, "").strip()
+
+    # Use fuzzy matching to find the most similar concept based on word similarity
     concepts = data['Content'].tolist()
-    similar_concepts = process.extract(user_input, concepts, scorer=fuzz.token_sort_ratio, limit=10)
+    most_similar_concept, similarity_score = process.extractOne(user_input, concepts)
 
     # Retrieve information for the most similar concept found
-    if similar_concepts:
-        most_similar_concept = similar_concepts[0][0]
+    if similarity_score >= 40:  # Set your desired threshold (e.g., 80)
         matching_row = data[data['Content'] == most_similar_concept]
         if not matching_row.empty:
             # Extract required information
